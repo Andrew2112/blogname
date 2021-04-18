@@ -69,6 +69,6 @@ use yii\widgets\Pjax;
     </div>
 <?php else: ?>
 
-    <p>Только <a href="<?= \yii\helpers\Url::to(['site/login']) ?>">зарегистрованные</a> пользователя могут оставлять
+    <p>Только <a href="<?= \yii\helpers\Url::to(['site/login']) ?>">зарегистрованные</a> пользователи могут оставлять
         Комментарии</p>
 <?php endif ?>
