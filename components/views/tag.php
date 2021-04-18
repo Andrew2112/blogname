@@ -2,7 +2,7 @@
 <?php if (!empty($tags)): ?>
     <ul>
         <?php foreach ($tags as $tag): ?>
-            <li><a href="<?= \yii\helpers\Url::to(['tags/view', 'id' => $tag->id]) ?>">#<?= $tag->title ?>
+        <li><a href="<?= \yii\helpers\Url::to(['tags/view', 'id' => $tag->id]) ?>">#<?= $tag->title ?></a>
 
         <?php endforeach; ?>
     </ul>

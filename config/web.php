@@ -5,6 +5,7 @@ $db = require __DIR__ . '/db.php';
 
 $config = [
     'id' => 'basic',
+    'name'=>'Blogname',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'defaultRoute' => 'post/index',
@@ -74,6 +75,7 @@ $config = [
                 '/' => 'post/index',
                 'category/<id:\d+>' => 'category/view',
                 'tags/<id:\d+>' => 'tags/view',
+                'search' => 'category/search',
             ],
         ],
 

@@ -5,6 +5,7 @@ namespace app\controllers;
 
 
 use app\models\Category;
+use Yii;
 use yii\web\HttpException;
 
 class CategoryController extends AppController
@@ -25,4 +26,5 @@ if (empty($category)){
 $this->setMeta("Blogname | {$category->name}", 'description', 'keywords');
         return $this->render('view', compact('category'));
     }
+
 }

@@ -46,8 +46,8 @@ AppAsset::register($this);
         <!---start-top-nav---->
         <div class="top-menu">
             <div class="search">
-                <form>
-                    <input type="text" placeholder="" required="">
+                <form action="<?=\yii\helpers\Url::to(['post/search'])?>" method="get">
+                    <input type="text" placeholder="Search a post..." required="" name="q">
                     <input type="submit" value=""/>
                 </form>
             </div>

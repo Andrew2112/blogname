@@ -57,4 +57,20 @@ class PostController extends AppController
         }
 
     }
+
+    public function actionSearch(){
+        $q=trim(\Yii::$app->request->get('q'));
+        $this->setMeta(Yii::$app->name . " | Search: {$q}"  );
+        if (!$q){
+            return $this->render('search');
+        }
+        $query = Post::find()->with('category')->where(['like', 'title', $q])->orderBy('created_at DESC');
+        $pages = new Pagination(['totalCount' => $query->count(), 'pageSize' => 3, 'pageSizeParam' => false, 'forcePageParam' => false]);
+        $post = $query->offset($pages->offset)
+            ->limit($pages->limit)
+            ->all();
+
+
+        return $this->render('search', compact('post', 'pages', 'q'));
+    }
 }
