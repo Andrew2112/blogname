@@ -46,7 +46,7 @@ AppAsset::register($this);
         <!---start-top-nav---->
         <div class="top-menu">
             <div class="search">
-                <form action="<?=\yii\helpers\Url::to(['post/search'])?>" method="get">
+                <form action="<?= \yii\helpers\Url::to(['post/search']) ?>" method="get">
                     <input type="text" placeholder="Search a post..." required="" name="q">
                     <input type="submit" value=""/>
                 </form>
@@ -95,20 +95,21 @@ AppAsset::register($this);
     </div>
 </div>
 <!--/header-->
-<div class="content">
+<div class="contact-content">
     <div class="container">
-        <div class="content-grids">
-            <div class="col-md-8 content-main">
-                <?= Alert::widget() ?>
-                <?= $content ?>
 
+            <div class="contact-info">
+                <h2>CONTACT</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                    aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                    culpa qui officia deserunt mollit anim id est laborum.Contrary to popular belief.</p>
             </div>
-            <div class="col-md-4 content-right">
-                <?= $this->render('_sidebar') ?>
-            </div>
-            <div class="clearfix"></div>
-        </div>
+            <?= $content ?>
+
     </div>
+</div>
 </div>
 <!---->
 <div class="footer">
@@ -121,4 +122,6 @@ AppAsset::register($this);
 </body>
 </html>
 <?php $this->endPage() ?>
+
+
 
