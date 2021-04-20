@@ -17,17 +17,27 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php $form = ActiveForm::begin([
         'id' => 'login-form',
-        'layout' => 'horizontal',
+        'options' => ['class' => 'form-horizontal'],
 
     ]); ?>
 
 
-    <?= $form->field($model, 'email')->textInput(['autofocus' => true]) ?>
+    <?= $form->field($model, 'email',
+        [
+            'template' => "{label}\n
+                  {input}\n
+             <div class='col-md-10' style='margin-top: 25px;' > {error}</div>\n
+          "
+        ])->textInput(['autofocus' => true]) ?>
 
-    <?= $form->field($model, 'password')->passwordInput() ?>
+    <?= $form->field($model, 'password', [
+        'template' => "{label}\n{input}\n
+             <div class='col-md-10' style='margin-top: 25px;' > {error}</div>\n
+          "
+    ])->passwordInput() ?>
 
     <div class="form-group">
-        <div class="col-md-offset-3 col-md-9">
+        <div class="col-md-9">
             <?= Html::submitButton('Вход', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
         </div>
     </div>
@@ -44,5 +54,5 @@ $this->params['breadcrumbs'][] = $this->title;
 <!-- VK Widget -->
 <div id="vk_auth"></div>
 <script type="text/javascript">
-    VK.Widgets.Auth("vk_auth", {"authUrl":"/site/login-vk"});
+    VK.Widgets.Auth("vk_auth", {"authUrl": "/site/login-vk"});
 </script>

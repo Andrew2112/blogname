@@ -56,7 +56,12 @@ use yii\widgets\Pjax;
                 'data' => ['pjax' => true],
             ],
         ]) ?>
-        <?= $form->field($commentForm, 'comment')->textarea(['class' => 'form-control', 'placeholder' => "Message"]) ?>
+        <?= $form->field($commentForm, 'comment',
+              [
+        'template' => "{input}\n
+             <div class='col-md-12 input-form' style='margin-top: 15px;' > {error}</div>\n
+          "
+        ])->textarea(['class' => 'form-control', 'placeholder' => "Message"]) ?>
 
 
         <div class="form-group">

@@ -9,6 +9,9 @@ use yii\bootstrap\ActiveForm;
 
 <?php $form = ActiveForm::begin([
     'id' => 'signup',
+    'fieldConfig' =>['template' => "{label}\n{input}\n
+             <div class='col-md-12' style='margin-top: 25px;' > {error}</div>\n
+          "]
 ]) ?>
 <?= $form->field($model, 'name') ?>
 <?= $form->field($model, 'email') ?>
