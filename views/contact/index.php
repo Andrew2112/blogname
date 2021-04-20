@@ -36,7 +36,15 @@ use yii\widgets\Pjax;
           "
     ])->textarea(['placeholder' => 'MESSAGE'])->label(false); ?>
 
-
+    <?= $form->field($model, 'reCaptcha', [  'template' => "
+          <div class='col-md-6 input-form'>{input} {error}\n  </div>\n               
+         "])->widget(
+        \himiklab\yii2\recaptcha\ReCaptcha3::class,
+        [
+            'siteKey' => '6LeDZbEaAAAAAKHVncPq7ELHQmXRIoeGwY381CSj', // unnecessary is reCaptcha component was set up
+            'action' => 'homepage',
+        ]
+    ) ?>
     <div class="form-group">
         <div class="col-md-12">
             <?= Html::submitButton('Отправить', ['class' => 'btn btn-default']) ?>

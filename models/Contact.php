@@ -13,7 +13,7 @@ class Contact extends Model
     public $phone;
     public $city;
     public $message;
-
+    public $reCaptcha;
     public function rules()
     {
         return [
@@ -22,6 +22,11 @@ class Contact extends Model
             [['name', 'city'], 'string', 'min' => 3, 'max' => 255],
             [['message'], 'string', 'min' => 3],
             [['phone'], 'match', 'pattern' => '/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/'],
+            [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator3::class,
+                'secret' => '6LeDZbEaAAAAAMsGOVUr9nDWTtgK6VRWBj90A2eP', // unnecessary if reСaptcha is already configured
+                'threshold' => 0.5,
+                'action' => 'homepage',
+            ],
         ];
     }
 
