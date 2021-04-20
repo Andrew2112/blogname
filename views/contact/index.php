@@ -15,7 +15,7 @@ use yii\widgets\Pjax;
         //'options' => ['class' => 'form-horizontal'],
         'fieldConfig' => [
             'template' => "
-          <div class='col-md-6' style='height: 75px;'>{input} {error}\n  </div>\n               
+          <div class='col-md-6 input-form' style='height: 75px;'>{input} {error}\n  </div>\n               
          ",
         ],
     ]) ?>
@@ -32,7 +32,7 @@ use yii\widgets\Pjax;
 
     <?= $form->field($model, 'message', [
         'template' => "
-             <div class='col-md-12' >{input} {error}</div>\n
+             <div class='col-md-12 input-form' >{input} {error}</div>\n
           "
     ])->textarea(['placeholder' => 'MESSAGE'])->label(false); ?>
 
