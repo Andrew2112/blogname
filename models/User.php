@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
 /**
@@ -14,7 +15,7 @@ use yii\web\IdentityInterface;
  * @property string $password
  * @property string|null $role
  */
-class User extends \yii\db\ActiveRecord implements IdentityInterface
+class User extends ActiveRecord implements IdentityInterface
 {
     /**
      * {@inheritdoc}
@@ -30,7 +31,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-           // [['email', 'password', 'name'], 'required'],
+            // [['email', 'password', 'name'], 'required'],
             [['email', 'password', 'role', 'name'], 'string', 'max' => 255],
             ['email', 'unique'],
         ];
@@ -46,7 +47,7 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
             'email' => 'Email',
             'password' => 'Password',
             'role' => 'Role',
-            'name'=>'Name'
+            'name' => 'Name'
         ];
     }
 
@@ -71,8 +72,10 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
     {
 
     }
-    public function findByUsername($email){
-        return static::findOne(['email'=>$email]);
+
+    public function findByUsername($email)
+    {
+        return static::findOne(['email' => $email]);
     }
 
     /**
@@ -97,20 +100,22 @@ class User extends \yii\db\ActiveRecord implements IdentityInterface
      */
     public function validateAuthKey($authKey)
     {
-       // return $this->getAuthKey() === $authKey;
+        // return $this->getAuthKey() === $authKey;
     }
 
-    public function validatePassword($password){
+    public function validatePassword($password)
+    {
         return Yii::$app->security->validatePassword($password, $this->password);
     }
 
-    public function saveFromVk($uid, $first_name){
-        $user=User::findOne($uid);
-        if ($user){
+    public function saveFromVk($uid, $first_name)
+    {
+        $user = User::findOne($uid);
+        if ($user) {
             return Yii::$app->user->login($user);
         }
-        $this->id=$uid;
-        $this->name=$first_name;
+        $this->id = $uid;
+        $this->name = $first_name;
         $this->save();
 
         return Yii::$app->user->login($this);

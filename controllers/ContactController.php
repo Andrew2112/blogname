@@ -21,6 +21,7 @@ class ContactController extends AppController
                 ->setSubject('Письмо обратной связи')
                 ->send();
             $model = new Contact();
+            Yii::$app->session->setFlash('success', 'Ваше сообщение отправлено.');
         }
 
         return $this->render('index', compact('model'));

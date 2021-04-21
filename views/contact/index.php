@@ -1,14 +1,14 @@
 <?php
 
+use app\widgets\Alert;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\widgets\Pjax;
 
 ?>
 <div class="contact-details">
-    <?php Pjax::begin([
-        // Опции Pjax
-    ]);?>
+    <?php Pjax::begin();?>
+    <?= Alert::widget() ?>
     <?php $form = ActiveForm::begin([
         'id' => 'login-form',
         'options' => ['data' => ['pjax' => true]],
