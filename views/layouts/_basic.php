@@ -99,6 +99,7 @@ AppAsset::register($this);
     <div class="container">
 
             <div class="contact-info">
+                <?= Alert::widget() ?>
                 <h2>CONTACT</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
                     et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -107,7 +108,6 @@ AppAsset::register($this);
                     culpa qui officia deserunt mollit anim id est laborum.Contrary to popular belief.</p>
             </div>
             <?= $content ?>
-
     </div>
 </div>
 </div>

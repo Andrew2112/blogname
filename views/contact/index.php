@@ -1,14 +1,25 @@
 <?php
 
-use app\widgets\Alert;
+
+use yii\bootstrap\Modal;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use yii\widgets\Pjax;
+
 
 ?>
+
+<?php Modal::begin([
+    'header' => '<h3>Напишите нам</h3>',
+    'toggleButton' => [
+        'label' => 'напишите нам',
+        'tag' => 'button',
+        'class' => 'btn btn-default',
+    ],
+    'bodyOptions' => ['class' => 'modal-body'],
+    'size' => "modal-lg",
+    'footer' => '<button class="close" data-dismiss="modal">Закрыть</button>',
+]); ?>
 <div class="contact-details">
-    <?php Pjax::begin();?>
-    <?= Alert::widget() ?>
     <?php $form = ActiveForm::begin([
         'id' => 'login-form',
         'options' => ['data' => ['pjax' => true]],
@@ -25,7 +36,7 @@ use yii\widgets\Pjax;
     <?= $form->field($model, 'email')->input('email', ['placeholder' => 'E-MAIL'])->label(false)->hint(false) ?>
 
 
-    <?= $form->field($model, 'phone', ['enableAjaxValidation'=>false])->input('text', ['placeholder' => 'PHONE'])->label(false) ?>
+    <?= $form->field($model, 'phone', ['enableAjaxValidation' => false])->input('text', ['placeholder' => 'PHONE'])->label(false) ?>
 
     <?= $form->field($model, 'city')->input('text', ['placeholder' => 'CITY'])->label(false); ?>
 
@@ -36,7 +47,7 @@ use yii\widgets\Pjax;
           "
     ])->textarea(['placeholder' => 'MESSAGE'])->label(false); ?>
 
-    <?= $form->field($model, 'reCaptcha', [  'template' => "
+    <?= $form->field($model, 'reCaptcha', ['template' => "
           <div class='col-md-6 input-form'>{input} {error}\n  </div>\n               
          "])->widget(
         \himiklab\yii2\recaptcha\ReCaptcha3::class,
@@ -51,18 +62,8 @@ use yii\widgets\Pjax;
         </div>
     </div>
     <?php ActiveForm::end() ?>
-    <?php Pjax::end();?>
 </div>
-<!--<div class="contact-details">
-    <form>
-        <input type="text" placeholder="Name" required/>
-        <input type="text" placeholder="Email" required/>
-        <input type="text" placeholder="Phone" required/>
-        <input type="text" placeholder="City Name" required/>
-        <textarea placeholder="Message"></textarea>
-        <input type="submit" value="SEND"/>
-    </form>
-</div>-->
+<?php Modal::end(); ?>
 <div class="contact-details">
     <div class="col-md-6 contact-map">
         <h4>FIND US HERE</h4>

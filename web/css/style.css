@@ -74,6 +74,7 @@ ul, label {
     outline: none;
     position: absolute;
     top: 23%;
+    right: 10px;
 }
 
 .top-menu ul {
@@ -508,7 +509,9 @@ margin-right:0%;
     background: #00aeff;
     color: #fff;
 }
-
+.modal-body{
+    overflow: hidden;
+}
 /*----*/
 .single-grid p {
     font-family: 'Lato', sans-serif;
