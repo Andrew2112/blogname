@@ -13,7 +13,7 @@ use yii\widgets\ActiveForm;
     'toggleButton' => [
         'label' => 'напишите нам',
         'tag' => 'button',
-        'class' => 'btn btn-default',
+        'class' => 'btn btn-danger',
     ],
     'bodyOptions' => ['class' => 'modal-body'],
     'size' => "modal-lg",
@@ -22,7 +22,7 @@ use yii\widgets\ActiveForm;
 <div class="contact-details">
     <?php $form = ActiveForm::begin([
         'id' => 'login-form',
-        'options' => ['data' => ['pjax' => true]],
+        'options' => ['data' => ['pjax' => false]],
         //'options' => ['class' => 'form-horizontal'],
         'fieldConfig' => [
             'template' => "
