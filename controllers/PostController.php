@@ -23,14 +23,14 @@ class PostController extends AppController
             ->all();
 
         $this->setMeta('Blogname', 'description', 'keywords');
-        return $this->render('index', compact('post', 'pages', 'model', 'user'));
+        return $this->render('index', compact('post', 'pages'));
     }
 
     public function actionView($id)
     {
         $post = Post::find()->where(['id' => $id])->one();
-        $comments = $post->comment;
-
+        // $comments = $post->comment;
+        $comments = Comment::find()->where(['post_id' => $id , 'status'=>1])->orderBy('created_at DESC')->limit(1)->all();
         $post->processCountViewPost();
         $commentForm = new CommentForm();
 
@@ -38,7 +38,15 @@ class PostController extends AppController
         $this->setMeta("Blogname | {$post->title}", 'description', 'keywords');
 
 
-        return $this->render('view', compact('post', 'comments', 'commentForm'));
+        return $this->render('view', compact('post', 'comments', 'commentForm', 'id'));
+    }
+//просмотр комментарие к статье в отдельном окне
+    public function actionPostComments($id)
+    {
+        $post = Post::find()->where(['id' => $id])->one();
+        $comments = $post->comment;
+
+        return $this->render('post-comments', compact('comments', 'post'));
     }
 
     public function actionComment($id)
@@ -47,10 +55,10 @@ class PostController extends AppController
 
         if (Yii::$app->request->isPjax) {
             $data = Yii::$app->request->post();
-            if ($model->load($data) ) {
-               $model->saveComment($id);
-                    Yii::$app->session->setFlash('success', 'Your comment will be added soon!');
-                 return $this->redirect(['post/view', 'id' => $id]);
+            if ($model->load($data)) {
+                $model->saveComment($id);
+                Yii::$app->session->setFlash('success', 'Your comment will be added soon!');
+                return $this->redirect(['post/view', 'id' => $id]);
 
 
             }
@@ -58,10 +66,11 @@ class PostController extends AppController
 
     }
 
-    public function actionSearch(){
-        $q=trim(\Yii::$app->request->get('q'));
-        $this->setMeta(Yii::$app->name . " | Search: {$q}"  );
-        if (!$q){
+    public function actionSearch()
+    {
+        $q = trim(\Yii::$app->request->get('q'));
+        $this->setMeta(Yii::$app->name . " | Search: {$q}");
+        if (!$q) {
             return $this->render('search');
         }
         $query = Post::find()->with('category')->where(['like', 'title', $q])->orderBy('created_at DESC');

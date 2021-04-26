@@ -21,8 +21,11 @@ use yii\widgets\Pjax;
 
 
 <?php if (!empty($comments)): ?>
+
+
     <?php foreach ($comments as $comment): ?>
         <?php if ($comment->status): ?>
+            <p>Последний комментарий:</p>
             <ul class="comment-list">
                 <h5 class="post-author_head">Written by <?= $comment->user->name ?></h5>
                 <li>
@@ -38,8 +41,10 @@ use yii\widgets\Pjax;
                     <p><span class="small"><?= Yii::$app->formatter->asDate($comment->created_at, 'long') ?></span></p>
                 </li>
             </ul>
+            <p><a href="<?=\yii\helpers\Url::to(['post/post-comments', 'id'=>$post->id])?>">Читать все комментарии</a></p>
         <?php endif ?>
     <?php endforeach ?>
+
 <?php endif ?>
 
 <?php if (!Yii::$app->user->isGuest): ?>

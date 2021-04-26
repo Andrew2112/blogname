@@ -11,7 +11,12 @@
                 <a href="<?=\yii\helpers\Url::to(['post/view', 'id'=>$item->id])?>"><span></span>READ MORE</a>
                 <div class="div">
                     <span class="glyphicon glyphicon-eye-open"></span> <?= $item->viewed?>
+
+                        <span class="glyphicon glyphicon-comment"></span> <a href="<?=\yii\helpers\Url::to(['post/post-comments', 'id'=>$item->id])?>"> <?= $item->getComment()->where(['status'=>1])->count()?>
+                    </a>
+
                 </div>
+
             </div>
         </div>
     </div>
