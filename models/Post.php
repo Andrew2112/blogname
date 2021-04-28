@@ -4,6 +4,8 @@ namespace app\models;
 
 use app\models\Tag;
 use Yii;
+
+use yii\bootstrap\Modal;
 use yii\helpers\ArrayHelper;
 
 /**
@@ -22,6 +24,8 @@ use yii\helpers\ArrayHelper;
  */
 class Post extends \yii\db\ActiveRecord
 {
+    public $data;
+    public $tree;
 
     /**
      * {@inheritdoc}
@@ -60,7 +64,7 @@ class Post extends \yii\db\ActiveRecord
             'excerpt' => 'Excerpt',
             'text' => 'Text',
             'image' => 'Image',
-            'viewed'=>'Просмотры',
+            'viewed' => 'Просмотры',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
@@ -75,8 +79,10 @@ class Post extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Category::class, ['id' => 'category_id']);
     }
-    public function getComment(){
-        return $this->hasMany(Comment::class, ['post_id'=>'id']);
+
+    public function getComment()
+    {
+        return $this->hasMany(Comment::class, ['post_id' => 'id']);
     }
 
     public function getTag()
@@ -84,6 +90,7 @@ class Post extends \yii\db\ActiveRecord
         return $this->hasMany(Tag::class, ['id' => 'tag_id'])
             ->viaTable('posts_tags', ['post_id' => 'id']);
     }
+
     /**
      * Счетчик просмотров поста с записью id в сессию
      * данный подход исключает накрутку просмотров за сессию
@@ -110,4 +117,5 @@ class Post extends \yii\db\ActiveRecord
         }
         return true;
     }
+
 }

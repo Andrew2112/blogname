@@ -16,7 +16,7 @@ use yii\db\Expression;
  * @property int|null $status
  * @property string|null $created_at
  * @property string|null $updated_at
- *
+ * @property int|null $parent_id
  * @property Post $post
  * @property User $user
  */
@@ -51,7 +51,7 @@ class Comment extends ActiveRecord
     {
         return [
             [['text'], 'string'],
-            [['user_id', 'post_id', 'status'], 'integer'],
+            [['user_id', 'post_id', 'status', 'parent_id'], 'integer'],
             [['created_at', 'updated_at'], 'safe'],
             [['post_id'], 'exist', 'skipOnError' => true, 'targetClass' => Post::class, 'targetAttribute' => ['post_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
@@ -68,6 +68,7 @@ class Comment extends ActiveRecord
             'text' => 'Text',
             'user_id' => 'User ID',
             'post_id' => 'Post ID',
+            'parent_id' => 'Parent ID',
             'status' => 'Status',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',

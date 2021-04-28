@@ -30,7 +30,7 @@ class PostController extends AppController
     {
         $post = Post::find()->where(['id' => $id])->one();
         // $comments = $post->comment;
-        $comments = Comment::find()->where(['post_id' => $id , 'status'=>1])->orderBy('created_at DESC')->limit(1)->all();
+        $comments = Comment::find()->where(['post_id' => $id, 'status' => 1])->orderBy('created_at DESC')->limit(1)->all();
         $post->processCountViewPost();
         $commentForm = new CommentForm();
 
@@ -40,13 +40,16 @@ class PostController extends AppController
 
         return $this->render('view', compact('post', 'comments', 'commentForm', 'id'));
     }
+
 //просмотр комментарие к статье в отдельном окне
     public function actionPostComments($id)
     {
+        $commentForm = new CommentForm();
         $post = Post::find()->where(['id' => $id])->one();
-        $comments = $post->comment;
-
-        return $this->render('post-comments', compact('comments', 'post'));
+        //$comments = $post->get_comments($id);
+        //$tree=$post->getTree($comments);
+        //$comments_new_window=$post->build_comments_list($tree);
+        return $this->render('post-comments', compact('post'));
     }
 
     public function actionComment($id)
@@ -55,6 +58,7 @@ class PostController extends AppController
 
         if (Yii::$app->request->isPjax) {
             $data = Yii::$app->request->post();
+
             if ($model->load($data)) {
                 $model->saveComment($id);
                 Yii::$app->session->setFlash('success', 'Your comment will be added soon!');
