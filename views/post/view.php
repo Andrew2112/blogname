@@ -68,7 +68,6 @@ use yii\widgets\Pjax;
           "
         ])->textarea(['class' => 'form-control', 'placeholder' => "Message"]) ?>
 
-
         <div class="form-group">
             <div class="col-lg-offset-1 col-lg-11">
                 <?= Html::submitButton('Send', ['class' => 'btn btn-primary']) ?>

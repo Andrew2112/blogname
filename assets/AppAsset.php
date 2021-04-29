@@ -27,10 +27,10 @@ class AppAsset extends AssetBundle
 
     ];
     public $js = [
-        //'https://code.jquery.com/jquery-2.2.4.js',
+        //'https://code.jquery.com/jquery-1.7.js',
         'js/easing.js',
         'js/move-top.js',
-        'js/my.js'
+        'js/my.js',
 
 
     ];

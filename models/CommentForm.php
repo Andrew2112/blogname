@@ -30,6 +30,7 @@ class CommentForm extends Model
         $comment->status = 0;
         $comment->parent_id = $this->parent_id;
 
+
         return $comment->save();
     }
 

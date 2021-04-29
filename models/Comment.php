@@ -52,6 +52,7 @@ class Comment extends ActiveRecord
         return [
             [['text'], 'string'],
             [['user_id', 'post_id', 'status', 'parent_id'], 'integer'],
+            [['parent_id'], 'default', 'value' => 0],
             [['created_at', 'updated_at'], 'safe'],
             [['post_id'], 'exist', 'skipOnError' => true, 'targetClass' => Post::class, 'targetAttribute' => ['post_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::class, 'targetAttribute' => ['user_id' => 'id']],
